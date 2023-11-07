@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  rhies-client-registry-server:
+    image: registry.gitlab.com/rbc5/rhies_client_registry:latest
+    container_name: rhies-client-registry-server
+    ports:
+      - "8079:8080"
+    restart: always
+    volumes:
+      - ./disc/rhies-client-registry-server/:/usr/local/tomcat/RhiesClientRegistry/
+    logging:
+      options:
+        max-size: 5m
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+        reservations:
+          memory: 1024M
